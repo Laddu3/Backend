@@ -1,0 +1,49 @@
+package com.hcl.data.service;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+@Service
+
+public class ExcelService {
+
+	@Autowired
+
+	private YourEntityRepository entityRepository;
+
+	public void importDataFromExcel(File excelFile) {
+
+		try (FileInputStream fis = new FileInputStream(excelFile);
+
+				Workbook workbook = new XSSFWorkbook(fis)) {
+
+			Sheet sheet = workbook.getSheetAt(0);
+
+			for (Row row : sheet) {
+
+				YourEntity entity = new YourEntity();
+
+				entity.setProperty1(row.getCell(0).getStringCellValue());
+
+				entity.setProperty2(row.getCell(1).getNumericCellValue());
+
+				// Set other properties as needed
+
+				entityRepository.save(entity);
+
+			}
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+
+	}
+
+}

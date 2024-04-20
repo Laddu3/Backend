@@ -1,0 +1,58 @@
+package com.hcl.data.entity;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Positive;
+
+import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * This is Admin bean
+ * 
+ * @author mandala.kamalkishore@hcl.com
+ *
+ */
+//admin model class
+@Entity
+@Table(name="Admin")
+@Data
+@NoArgsConstructor
+
+	public class YourEntity {
+
+	    @Id
+
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	    private Long id;
+
+	    private String property1;
+
+	    private Double property2;
+
+	    // Add other properties, getters, setters, and constructors as needed
+
+	}
+	
+
+	
+}

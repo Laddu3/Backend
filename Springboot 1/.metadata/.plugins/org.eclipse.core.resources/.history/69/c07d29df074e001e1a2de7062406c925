@@ -1,0 +1,47 @@
+package com.hcl.data.controller;
+
+@RestController
+
+public class ExcelController {
+
+	@Autowired
+
+	private ExcelService excelService;
+
+	@PostMapping("/uploadExcel")
+
+	public ResponseEntity<String> uploadExcel(@RequestParam("file") MultipartFile file) {
+
+		try {
+
+			File excelFile = convertMultiPartToFile(file);
+
+			excelService.importDataFromExcel(excelFile);
+
+			return ResponseEntity.ok("Data imported successfully");
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error importing data");
+
+		}
+
+	}
+
+	private File convertMultiPartToFile(MultipartFile file) throws IOException {
+
+		File convertedFile = new File(file.getOriginalFilename());
+
+		try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
+
+			fos.write(file.getBytes());
+
+		}
+
+		return convertedFile;
+
+	}
+
+}

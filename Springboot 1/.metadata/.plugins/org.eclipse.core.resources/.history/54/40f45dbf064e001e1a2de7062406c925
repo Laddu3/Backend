@@ -1,0 +1,19 @@
+package com.hcl.data.entity;
+
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Data_table")
+
+public class Data {
+
+	private Long id;
+
+	private String property1;
+
+	private Double property2;
+
+}

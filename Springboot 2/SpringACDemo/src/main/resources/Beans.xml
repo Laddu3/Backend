@@ -1,0 +1,69 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="yyyy-MM-dd" />
+	</bean>
+
+	<bean id="studentbean"
+		class="com.smesession.sf.springacdemo.Student">
+		<!-- Setter Injection -->
+		<property name="name" value="C"></property>
+		<property name="age" value="47"></property>
+		<property name="mobileNumber" value="0000000"></property>
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2000-04-10" />
+			</bean>
+		</property>
+		
+		<property name="exam" ref="exambean"></property>
+		
+	</bean>
+	
+	
+<bean id="exambean"
+		class="com.smesession.sf.springacdemo.Exam">
+		<!-- Setter Injection -->
+		<property name="name" value="English"></property>
+		<property name="score" value="80"></property>
+		<property name="examDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2023-06-05" />
+			</bean>
+		</property>
+		
+	</bean>
+
+
+<bean id="studentbean2"
+		class="com.smesession.sf.springacdemo.Student">
+		<!-- Construction Injection -->
+		<constructor-arg value="D"></constructor-arg>
+		<constructor-arg value="21" type="int"></constructor-arg>
+		<constructor-arg value="987654321"></constructor-arg>
+		<constructor-arg>
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2001-04-10" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg  ref="exambean2" ></constructor-arg>
+		 
+	</bean>
+
+
+<bean id="exambean2"
+		class="com.smesession.sf.springacdemo.Exam">
+		<!-- Construction Injection -->
+		<constructor-arg value="Social"></constructor-arg>
+		<constructor-arg value="85" type="int"></constructor-arg>
+		<constructor-arg>
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2023-07-06" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+</beans>
+

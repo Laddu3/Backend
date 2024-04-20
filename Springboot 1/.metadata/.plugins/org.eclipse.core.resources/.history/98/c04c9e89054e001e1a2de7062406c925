@@ -1,0 +1,16 @@
+#our application will run on below
+server.port=9090
+
+#properties required for h2 db
+spring.datasource.url=jdbc:h2:mem:dbc
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.h2.console.enabled=true
+
+
+
+
+
+

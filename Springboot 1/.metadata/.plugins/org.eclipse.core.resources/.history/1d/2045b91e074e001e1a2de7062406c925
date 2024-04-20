@@ -1,0 +1,12 @@
+package com.hcl.data.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.hcl.surabi.entity.Admin;
+@Repository
+public interface AdminRepository extends JpaRepository<Admin,Long>{
+	
+	public Admin findByAdminuserNameAndAdminpassword(String username,String password);
+
+}
